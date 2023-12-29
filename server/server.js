@@ -63,7 +63,7 @@ app.post('/subscribe', (req, res) => {
         }
     });
 
-    res.status(200).json({data: 'Hello World'});
+    res.status(200).json({ result: true });
 });
 
 app.get('/sk-demo', (req, res) => {
@@ -105,6 +105,6 @@ app.get('/sk-demo', (req, res) => {
     res.send(200);
 });
 
-const port = 3000;
+const port = 3100;
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
