@@ -13,7 +13,7 @@ import { SwService } from './sw.service';
 })
 export class AppComponent implements OnInit {
   notificationStatus = false;
-  subscription : any;
+  subscription: PushSubscriptionJSON | null = null;
 
   constructor(private swService: SwService, private http: HttpClient) {}
 
