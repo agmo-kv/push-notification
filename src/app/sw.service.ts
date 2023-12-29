@@ -21,9 +21,24 @@ export class SwService {
       );
       this.serviceWorkerRegistration = registration;
       console.log('Service worker registered...', registration);
+      this.registerAngularClient();
     } catch (err) {
       console.error('Failed to register service worker: ', err);
     }
+  }
+
+  async registerAngularClient(): Promise<void> {
+    console.log('Registering angular client connection...');
+    // PING to service worker, later we will use this ping to identify our application
+    this.serviceWorkerRegistration!.active?.postMessage('angular-client');
+
+    // listening for messages from service worker
+    navigator.serviceWorker.addEventListener('message', function (event) {
+      const messageFromSW = event.data;
+      console.log('message from SW: ' + messageFromSW);
+      // you can also send a stringified JSON and then do a JSON.parse() here.
+    });
+    console.log('Angular Client connection registered...');
   }
 
   async requestPermission(): Promise<PushSubscription | undefined> {
